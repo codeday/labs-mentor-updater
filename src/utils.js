@@ -45,7 +45,7 @@ module.exports.geocode = async (str) => {
   if (!str) return nullResponse;
 
   const apiKey = process.env.GEOCODE_API_KEY;
-  const { data } = await axios(`https://geocode.search.hereapi.com/v1/geocode?apiKey=${apiKey}&q=${str}`);
+  const { data } = await axios(`https://geocode.search.hereapi.com/v1/geocode?apiKey=${apiKey}&q=${encodeURIComponent(str)}`);
 
   if (data.items.length === 0 || !data.items[0].address || !data.items[0].address.postalCode) return nullResponse;
 

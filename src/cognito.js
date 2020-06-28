@@ -53,9 +53,13 @@ const withLogin = async () => {
     await browser.close();
   }
 
-  const axiosWithCookies = async (options) => axios({
+  const axiosWithCookies = async ({ headers, ...options }) => axios({
     jar,
     withCredentials: true,
+    headers: {
+      'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0',
+      ...headers,
+    },
     ...options
   });
 
@@ -63,6 +67,7 @@ const withLogin = async () => {
 }
 
 module.exports.getCsv = async (id) => {
+  console.log(`|- Getting ${id}`);
   const cognitoUrlExport = `${cognitoBase}/forms/admin/exportentries`;
   const exportPayload = {
     viewModel: {

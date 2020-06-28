@@ -29,6 +29,7 @@ module.exports = async () => {
     backgroundRural: mentor['Background Rural'] || false,
     preferStudentUnderRep: Number.parseInt(mentor['Prefer Underrepresented Students'] || '0') || 0,
     okExtended: mentor['OK Extended Internship'] || false,
+    okTimezoneDifference: mentor['OK Timezone Difference'] || false,
     timezone: mentor['Timezone'] || -6,
     preferToolExistingKnowledge: mentor['Prefer Existing Knowledge'] || false,
     track: mentor.Track,
@@ -39,5 +40,5 @@ module.exports = async () => {
 
   const filename = path.join(path.dirname(path.dirname(__dirname)), 'out', 'mentors.json');
   console.log(filename);
-  fs.writeFileSync(filename, JSON.stringify(out));
+  fs.writeFileSync(filename, JSON.stringify(out, null, 2));
 }

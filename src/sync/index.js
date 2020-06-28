@@ -22,9 +22,13 @@ const createRows = async (fn, mainTable, table, rows, createFn) => {
   const dedupMain = await dedup(table, rows[mainTable]);
   const dedupRows = { ...rows, [mainTable]: dedupMain };
 
+  if (dedupMain.length === 0) return;
+  const idCol = Object.keys(dedupMain[0])[0];
+  console.log(`  |- Will import the following: ${dedupMain.map((row) => row[idCol]).join(', ')}`)
+
   return Promise.all((await fn(dedupRows)).map(async (row) => {
     try {
-      console.log(`Adding ${mainTable} #${row['Cognito ID']}`);
+      console.log(`  |- Adding ${mainTable} #${row['Cognito ID']}`);
       await createFn(row);
     } catch (err) {
       console.log(err);
