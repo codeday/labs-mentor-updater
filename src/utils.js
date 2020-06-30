@@ -26,7 +26,7 @@ module.exports.makeConfirmLink = (tableId, recordId, title, confirmState) => {
     titleString: title,
     confirmField: 'Status',
     confirmState,
-  }, process.env.EDIT_SECRET, { expiresIn: "3d" });
+  }, process.env.EDIT_SECRET, { expiresIn: "36h" });
 }
 
 const urbanRural = csvParse(fs.readFileSync(path.join(path.dirname(__dirname), 'data', 'rural.csv')), { columns: true })

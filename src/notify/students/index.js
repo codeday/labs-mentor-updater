@@ -76,7 +76,7 @@ module.exports = async () => {
   );
 
   students.forEach(async (student) => {
-    const actionRequired = (['Admission - Early', 'Admission - Normal'].includes(student.Status)) ? '[Action Required] ' : '';
+    const actionRequired = (['Admission - Early', 'Admission - Normal', 'Admission - Late'].includes(student.Status)) ? '[Action Required] ' : '';
     const message = messages(student);
     if (!message) return;
 

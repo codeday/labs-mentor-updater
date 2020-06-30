@@ -4,11 +4,15 @@ module.exports.baseId = process.env.AIRTABLE_BASE;
 module.exports.mentorsTableId = 'Mentors';
 module.exports.projectsTableId = 'Projects';
 module.exports.studentsTableId = 'Students';
+module.exports.contentTableId = 'Content';
+module.exports.notificationTableId = 'Notification Requests';
 
 module.exports.base = new Airtable({ apiKey: process.env.AIRTABLE_KEY }).base(module.exports.baseId);
 module.exports.mentorsTable = module.exports.base.table(module.exports.mentorsTableId);
 module.exports.projectsTable = module.exports.base.table(module.exports.projectsTableId);
 module.exports.studentsTable = module.exports.base.table(module.exports.studentsTableId);
+module.exports.contentTable = module.exports.base.table(module.exports.contentTableId);
+module.exports.notificationTable = module.exports.base.table(module.exports.notificationTableId);
 
 
 module.exports.fetchAll = async (select) => {
